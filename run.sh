@@ -17,7 +17,7 @@ EOL
     echo "error generate file: $file"
     exit 1
   fi
-  if [[ "$DEBUG" != '' ]]; then
+  if [[ "${DEBUG:=}" != '' ]]; then
     echo "[DEBUG] Config: ${file}"
     echo "-----"
     cat "$file"
@@ -95,7 +95,7 @@ EOL
     echo "error generate file: $file"
     exit 1
   fi
-  if [[ "$DEBUG" != '' ]]; then
+  if [[ "${DEBUG:=}" != '' ]]; then
     echo "[DEBUG] Config: ${file}"
     echo "-----"
     cat "$file"
