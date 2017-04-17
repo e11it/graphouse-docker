@@ -10,6 +10,7 @@ ARG repo_java_src="deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trus
 ARG repo_java_key="EEA14886"
 
 
+ADD run.sh /usr/local/bin/run.sh
 RUN apt-get update && \
     apt-get install -y apt-transport-https && \
     mkdir -p /etc/apt/sources.list.d && \
@@ -25,8 +26,11 @@ RUN apt-get update && \
     apt-get install --allow-unauthenticated -y oracle-java8-set-default && \
     apt-get install -y graphouse=$ch_version && \
     rm -rf /var/lib/apt/lists/* /var/cache/debconf /var/cache/oracle-* && \
-    apt-get clean
+    apt-get clean && \
+    chmod +x /usr/local/bin/run.sh
 
-EXPOSE 2003
+EXPOSE 2003 2005
 USER graphouse
-ENTRYPOINT exec /opt/graphouse/bin/graphouse
+WORKDIR /opt/graphouse
+
+ENTRYPOINT exec /usr/local/bin/run.sh
