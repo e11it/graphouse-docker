@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -oe pipefail -u
+set -o pipefail -u
 
 generate_vmoptions() {
   local file='/etc/graphouse/graphouse.vmoptions'
