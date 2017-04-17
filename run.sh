@@ -108,7 +108,7 @@ create_db() {
     local ch_pass=${GH__CLICKHOUSE__PASSWORD:=}
     local out
     echo "Create DB: ${GH__CLICKHOUSE__DB:=graphite}"
-    out=$(wget -O /dev/null  --post-data="CREATE DATABASE IF NOT EXISTS ${GH__CLICKHOUSE__DB:=graphite}" \
+    out=$(wget -q -S -O -  --post-data="CREATE DATABASE IF NOT EXISTS ${GH__CLICKHOUSE__DB:=graphite}" \
         --header="X-ClickHouse-User: $ch_user" \
         --header="X-ClickHouse-Key: $ch_pass" \
         "http://${GH__CLICKHOUSE__HOST:=localhost}:${GH__CLICKHOUSE__PORT:=8123}/" 2>&1)
@@ -119,7 +119,7 @@ create_db() {
      fi
      
      echo "Create Table: ${GH__CLICKHOUSE__DB:=graphite}.metrics"
-     out=$(wget -O /dev/null  --post-data="CREATE TABLE IF NOT EXISTS ${GH__CLICKHOUSE__DB:=graphite}.metrics ( date Date DEFAULT toDate(0),  name String,  level UInt16,  parent String,  updated DateTime DEFAULT now(),  status Enum8('SIMPLE' = 0, 'BAN' = 1, 'APPROVED' = 2, 'HIDDEN' = 3, 'AUTO_HIDDEN' = 4)) ENGINE = ReplacingMergeTree(date, (parent, name), 1024, updated)" \
+     out=$(wget -q -S -O -  --post-data="CREATE TABLE IF NOT EXISTS ${GH__CLICKHOUSE__DB:=graphite}.metrics ( date Date DEFAULT toDate(0),  name String,  level UInt16,  parent String,  updated DateTime DEFAULT now(),  status Enum8('SIMPLE' = 0, 'BAN' = 1, 'APPROVED' = 2, 'HIDDEN' = 3, 'AUTO_HIDDEN' = 4)) ENGINE = ReplacingMergeTree(date, (parent, name), 1024, updated)" \
         --header="X-ClickHouse-User: $ch_user" \
         --header="X-ClickHouse-Key: $ch_pass" \
         "http://${GH__CLICKHOUSE__HOST:=localhost}:${GH__CLICKHOUSE__PORT:=8123}/" 2>&1)
@@ -135,13 +135,15 @@ create_db() {
      fi
 
      echo "Create Table: ${GH__CLICKHOUSE__DB:=graphite}.data Engine: $data_engine"
-     out=$(wget -O /dev/null  --post-data="CREATE TABLE IF NOT EXISTS ${GH__CLICKHOUSE__DB:=graphite}.data ( metric String,  value Float64,  timestamp UInt32,  date Date,  updated UInt32) ENGINE = $data_engine" \
+     out=$(wget -q -S -O - --post-data="CREATE TABLE IF NOT EXISTS ${GH__CLICKHOUSE__DB:=graphite}.data ( metric String,  value Float64,  timestamp UInt32,  date Date,  updated UInt32) ENGINE = $data_engine" \
         --header="X-ClickHouse-User: $ch_user" \
         --header="X-ClickHouse-Key: $ch_pass" \
         "http://${GH__CLICKHOUSE__HOST:=localhost}:${GH__CLICKHOUSE__PORT:=8123}/" 2>&1)
      if (( $? != 0 )); then
         echo "error create table ${GH__CLICKHOUSE__DB:=graphite}.data"
         echo "$out"
+        echo "--------------"
+        echo "Do you setup 'graphite_rollup' element in clichouse-server configuration file?"
         exit 1
      fi
 }
