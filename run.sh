@@ -50,10 +50,13 @@ graphouse.cacher.port=${GH__CACHER__PORT:=2003}
 graphouse.cacher.threads=${GH__CACHER__THREADS:=100}
 graphouse.cacher.socket-timeout-millis=${GH__CACHER__SOCKET_TIMEOUT_MILLIS:=42000}
 
-graphouse.cacher.cache-size=${GH__CACHER__CACHE_SIZE:=2000000}
-graphouse.cacher.batch-size=${GH__CACHER__BATCH_SIZE:=1000000}
-graphouse.cacher.writers-count=${GH__CACHER__WRITERS_COUNT:=2}
-graphouse.cacher.flush-interval-seconds=${GH__CACHER__FLUSH_INTERVAL_SECONDS:=5}
+graphouse.cacher.queue-size=${GH__CACHER__QUEUE_SIZE:=10000000}
+graphouse.cacher.read-batch-size=${GH__CACHER__READ_BATCH_SIZE:=1000}
+graphouse.cacher.min-batch-size=${GH__CACHER__MIN_BATCH_SIZE:=10000}
+graphouse.cacher.max-batch-size=${GH__CACHER__MAX_BATCH_SIZE:=1000000}
+graphouse.cacher.min-batch-time-seconds=${GH__CACHER__MIN_BATCH_TIME_SECONDS:=1}
+graphouse.cacher.max-batch-time-seconds=${GH__CACHER__MAX_BATCH_TIME_SECONDS:=5}
+graphouse.cacher.max-output-threads=${GH__CACHER__MAX_OUTPUT_THREADS:=5}
 
 #Http server (metric search, ping, metricData)
 graphouse.http.port=${GH__HTTP__PORT:=2005}
