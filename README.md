@@ -63,6 +63,7 @@ Else create table with ENGINE: `ReplacingMergeTree(date, (metric, timestamp), 81
 * `GH__CLICKHOUSE__QUERY_TIMEOUT_SECONDS` (original: graphouse.clickhouse.query-timeout-seconds | defaul=120)
 
 * `GH__CLICKHOUSE__RETENTION_CONFIG` (original: graphouse.clickhouse.retention-config | defaul=)
+  > значение названия конфига из таблицы в КХ, например `graphite_rollup`. Посмотреть: `SELECT * FROM system.graphite_retentions`
 
 #### metric server and cacher
 
@@ -87,6 +88,8 @@ Else create table with ENGINE: `ReplacingMergeTree(date, (metric, timestamp), 81
 
 * `GH__SEARCH__REFRESH_SECONDS` (original: graphouse.search.refresh-seconds | defaul=60)
 * `GH__TREE__IN_MOMORY_LEVELS` (original: graphouse.tree.in-memory-levels | defaul=3)
+  > Сколько уровней дерева метрик графаус будет на старте загружать в память.
+  Остальные будут грузится только on-demang при запросах
 * `GH__TREE__DIR_CONTENT__CACHE_TIME_MINUTES` (original: graphouse.tree.dir-content.cache-time-minutes | defaul=60)
 * `GH__TREE__DIR_CONTENT__CACHE_CONCURRENCY_LEVELS` (original: graphouse.tree.dir-content.cache-concurrency-level | defaul=6)
 * `GH__TREE__DIR_CONTENT__BATCHER__MAX_PARALLEL_REQUEST` (original: graphouse.tree.dir-content.batcher.max-parallel-requests | defaul=3)
