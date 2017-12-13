@@ -70,10 +70,13 @@ Else create table with ENGINE: `ReplacingMergeTree(date, (metric, timestamp), 81
 * `GH__CACHER__THREADS` (original: graphouse.cacher.threads | defaul=100)
 * `GH__CACHER__SOCKET_TIMEOUT_MILLIS` (original: graphouse.cacher.socket-timeout-millis | defaul=42000)
 
-* `GH__CACHER__CACHE_SIZE` (original: graphouse.cacher.cache-size | defaul=2000000)
-* `GH__CACHER__BATCH_SIZE` (original: graphouse.cacher.batch-size | defaul=1000000)
-* `GH__CACHER__WRITERS_COUNT` (original: graphouse.cacher.writers-count | defaul=2)
-* `GH__CACHER__FLUSH_INTERVAL_SECONDS` (original: graphouse.cacher.flush-interval-seconds | defaul=5)
+* `GH__CACHER__QUEUE_SIZE` (original: graphouse.cacher.queue-size | default=10000000)
+* `GH__CACHER__READ_BATCH_SIZE` (original: graphouse.cacher.read-batch-size | default=1000)
+* `GH__CACHER__MIN_BATCH_SIZE` (original: graphouse.cacher.min-batch-size | default=10000)
+* `GH__CACHER__MAX_BATCH_SIZE` (original: graphouse.cacher.max-batch-size | default=1000000)
+* `GH__CACHER__MIN_BATCH_TIME_SECONDS` (original: graphouse.cacher.min-batch-time-seconds | default=1)
+* `GH__CACHER__MAX_BATCH_TIME_SECONDS` (original: graphouse.cacher.max-batch-time-seconds | default=5)
+* `GH__CACHER__MAX_OUTPUT_THREADS` (original: graphouse.cacher.max-output-threads | default=5)
 
 ##### Http server (metric search, ping, metricData)
 
