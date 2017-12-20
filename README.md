@@ -67,6 +67,7 @@ Else create table with ENGINE: `ReplacingMergeTree(date, (metric, timestamp), 81
 
 #### metric server and cacher
 
+* `GH__CACHER__BIND_ADDRESS` (original: graphouse.cacher.bind-address | default=::}
 * `GH__CACHER__PORT` (original: graphouse.cacher.port | defaul=2003)
 * `GH__CACHER__THREADS` (original: graphouse.cacher.threads | defaul=100)
 * `GH__CACHER__SOCKET_TIMEOUT_MILLIS` (original: graphouse.cacher.socket-timeout-millis | defaul=42000)
