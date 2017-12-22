@@ -43,7 +43,7 @@ graphouse.clickhouse.query-timeout-seconds=${GH__CLICKHOUSE__QUERY_TIMEOUT_SECON
 graphouse.clickhouse.retention-config=${GH__CLICKHOUSE__RETENTION_CONFIG:=}
 
 #metric server and cacher
-graphouse.cacher.bind-address=${GH__CACHER__BIND_ADDRESS:=::}
+graphouse.cacher.bind-address=${GH__CACHER__BIND_ADDRESS:=0.0.0.0}
 graphouse.cacher.port=${GH__CACHER__PORT:=2003}
 graphouse.cacher.threads=${GH__CACHER__THREADS:=100}
 graphouse.cacher.socket-timeout-millis=${GH__CACHER__SOCKET_TIMEOUT_MILLIS:=42000}
@@ -57,7 +57,7 @@ graphouse.cacher.max-batch-time-seconds=${GH__CACHER__MAX_BATCH_TIME_SECONDS:=5}
 graphouse.cacher.max-output-threads=${GH__CACHER__MAX_OUTPUT_THREADS:=5}
  
 #Http server (metric search, ping, metricData)
-graphouse.http.bind-address=${GH__HTTP__BIND_ADDRESS:=::}
+graphouse.http.bind-address=${GH__HTTP__BIND_ADDRESS:=0.0.0.0}
 graphouse.http.port=${GH__HTTP__PORT:=2005}
 graphouse.http.threads=${GH__HTTP__THREADS:=25}
 
