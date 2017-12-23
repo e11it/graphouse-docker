@@ -3,7 +3,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ARG repo_ch="deb http://repo.yandex.ru/clickhouse/trusty stable main"
 ARG repo_ch_key="E0C56BD4"
-ARG ch_version=\*
+ARG ch_version=1.5
 
 ARG repo_java="deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main"
 ARG repo_java_src="deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main"
